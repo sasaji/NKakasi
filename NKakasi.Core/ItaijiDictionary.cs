@@ -7,7 +7,7 @@ namespace NKakasi
 {
     class ItaijiDictionary
     {
-        private readonly Dictionary<Character, Character> table = new Dictionary<Character, Character>();
+        private readonly Dictionary<char, char> table = new Dictionary<char, char>();
 
         internal static ItaijiDictionary GetInstance()
         {
@@ -54,7 +54,7 @@ namespace NKakasi
                         {
                             Console.Error.WriteLine("ItaijiDictionary: Ignored line: " + line);
                         }
-                        table.Add(new Character(line[0]), new Character(line[1]));
+                        table.Add(line[0], line[1]);
                     }
                 }
                 finally
@@ -88,7 +88,7 @@ namespace NKakasi
 
         internal char Get(char ch)
         {
-            return table.ContainsKey(new Character(ch)) ? table[new Character(ch)].Value : ch;
+            return table.ContainsKey(ch) ? table[ch] : ch;
         }
     }
 }

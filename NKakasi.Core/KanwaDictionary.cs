@@ -9,9 +9,9 @@ namespace NKakasi
 {
     public class KanwaDictionary
     {
-        private readonly Dictionary<Character, SortedSet<KanjiYomi>> contentsTable = new Dictionary<Character, SortedSet<KanjiYomi>>(8192);
-        private Dictionary<Character, KanwaEntry> entryTable;
-        private SortedSet<Character> loadedKeys;
+        private readonly Dictionary<char, SortedSet<KanjiYomi>> contentsTable = new Dictionary<char, SortedSet<KanjiYomi>>(8192);
+        private Dictionary<char, KanwaEntry> entryTable;
+        private SortedSet<char> loadedKeys;
         private RandomAccessFile file;
 
         public void Load(string filename)
@@ -186,7 +186,7 @@ namespace NKakasi
                 //}
                 kanjiBuffer.Append(ItaijiDictionary.GetInstance().Get(ch));
             }
-            Character key = new Character(kanjiBuffer[0]);
+            char key = kanjiBuffer[0];
             kanji = kanjiBuffer.ToString().Substring(1);
 
             int yomiLength = yomi.Length;
@@ -234,7 +234,7 @@ namespace NKakasi
             {
                 Initialize();
             }
-            Character key = new Character(k);
+            char key = k;
 
             if (!contentsTable.ContainsKey(key))
             {
@@ -271,11 +271,11 @@ namespace NKakasi
                 path = Environment.GetEnvironmentVariable("KANWADICTPATH");
             file = new RandomAccessFile(path, "r");
             int numKanji = file.ReadInt();
-            entryTable = new Dictionary<Character, KanwaEntry>(numKanji);
-            loadedKeys = new SortedSet<Character>();
+            entryTable = new Dictionary<char, KanwaEntry>(numKanji);
+            loadedKeys = new SortedSet<char>();
             for (int index = 0; index < numKanji; index++)
             {
-                Character key = new Character(file.ReadChar());
+                char key = file.ReadChar();
                 int offset = file.ReadInt();
                 int numWords = file.ReadShort();
                 entryTable.Add(key, new KanwaEntry(offset, numWords));

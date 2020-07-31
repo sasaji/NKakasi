@@ -70,7 +70,7 @@ namespace NKakasi
                     ++bufferLength;
                 }
                 char ch = buffer[nextIndex];
-                if (Character.IsWhitespace(ch))
+                if (char.IsWhiteSpace(ch))
                 {
                     if (!SpaceEatMode)
                     {
@@ -95,7 +95,7 @@ namespace NKakasi
                 for (int index = 1; index < end; index++)
                 {
                     char ch = buffer[index];
-                    if (Character.IsWhitespace(ch))
+                    if (char.IsWhiteSpace(ch))
                     {
                         buffer[start++] = ch;
                         end++;

@@ -67,7 +67,7 @@ namespace NKakasi
             }
             if (SplitMode)
             {
-                if (Character.IsWhitespace(c))
+                if (char.IsWhiteSpace(c))
                 {
                     lastWasSpace = true;
                     outSeparator = false;

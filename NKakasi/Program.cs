@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
+using System.Text;
 
 namespace NKakasi
 {
@@ -10,6 +11,7 @@ namespace NKakasi
         {
             try
             {
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 Kakasi kakasi = new Kakasi();
                 if (!kakasi.SetArguments(args))
                 {

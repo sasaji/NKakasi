@@ -8,11 +8,11 @@ namespace NKakasi
     {
         private class Table
         {
-            readonly Dictionary<Character, LinkedList<Entry>> table = new Dictionary<Character, LinkedList<Entry>>();
+            readonly Dictionary<char, LinkedList<Entry>> table = new Dictionary<char, LinkedList<Entry>>();
 
             internal void Add(string kana, string romaji)
             {
-                Character key = new Character(kana[0]);
+                char key = kana[0];
                 Entry newEntry = new Entry(kana.Substring(1), romaji);
 
                 if (!table.ContainsKey(key)) {
@@ -43,9 +43,9 @@ namespace NKakasi
                 if (ch < 0) {
                     return null;
                 }
-                if (!table.ContainsKey(new Character((char)ch)))
+                if (!table.ContainsKey((char)ch))
                     return null;
-                LinkedList<Entry> list = table[new Character((char)ch)];
+                LinkedList<Entry> list = table[(char)ch];
                 string rest = null;
                 int restLength = 0;
                 for (LinkedListNode<Entry> node = list.First; node != null; node = node.Next) {
@@ -1106,7 +1106,7 @@ namespace NKakasi
                 return false;
             }
             if (capitalizeMode) {
-                output.Write(Character.ToUpper(romaji[0]));
+                output.Write(char.ToUpper(romaji[0]));
                 romaji = romaji.Substring(1);
             }
             if (upperCaseMode) {
